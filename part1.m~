@@ -21,7 +21,7 @@ lb = [0, -50, 0]';
 % Call linprog from matlab
 fprintf('Part A\n')
 [x, fval] = linprog(c, A, b, Aeq, beq, lb, ub);
-fprintf('Investing in:\n\t%.2f shares of stocks\n\t%.2f options\n\t%.2f bonds\n', x(1), x(2), x(3))
+fprintf('Investing in:\n\t%d shares of stocks\n\t%d options\n\t%d bonds\n', round(x(1),2), round(x(2),2), round(x(3),2))
 fprintf('Total estimated profit:\t$%d\n\n', round(-1 * fval - 20000))
 
 %% part b: Does the portfolio make profit in evert case?
@@ -31,9 +31,9 @@ profit_1 = c1' * x - 20000;
 profit_2 = c2' * x - 20000;
 profit_3 = c3' * x - 20000;
 fprintf('Part B\n')
-fprintf('Profit in case 1: %.2f\n', profit_1);
-fprintf('Profit in case 2: %.2f\n', profit_2);
-fprintf('Profit in case 3: %.2f\n\n', profit_3);
+fprintf('Profit in case 1: %d\n', round(profit_1),2);
+fprintf('Profit in case 2: %d\n', round(profit_2),2);
+fprintf('Profit in case 3: %d\n\n', round(profit_3),2);
 
 %% part c: Have at least 2000 profit in all scenarios
 % Inequility constraints (Take inverse to get "greater than")
