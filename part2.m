@@ -18,4 +18,33 @@ m = [std_1, std_2, std_3]';
 C = [std_1^2, cov_12, cov_13;
     cov_12, std_2^2, cov_23;
     cov_13, cov_23, std_3^2];
-p = Portfolio('assetmean', m, 'assetcovar', C);
+p = Portfolio('assetmean', m, 'assetcovar', C, 'budget', 1, 'lb', 0);
+plotFrontier(p);
+
+% Estimate portfolio under specific profits
+pwgt = estimateFrontierByReturn(p, [1 : 9]);
+prsk = estimatePortRisk(p, pwgt);
+% Produce table
+fprintf('Portfolio and risk under different return goal:\n');
+tbl = [pwgt', prsk]
+
+
+%% Part c: Pick a portfolio and try it on January 2017
+% Calculate realized return of each portfolio
+r_realized_1 = 1.039291504403617;
+r_realized_2 = 1.002798835772569;
+r_realized_3 = 1.019317943695971;
+r_realized = [r_realized_1, r_realized_2, r_realized_3];
+fprintf('The realized individual return of three assets:\n');
+fprintf('\tSPT:\t%f\n', r_realized(1));
+fprintf('\tGOVT:\t%f\n', r_realized(2));
+fprintf('\tEEMV:\t%f\n', r_realized(3));
+
+% Pick a portfolio (#5)
+port = pwgt(:, 5);
+profit = r_realized * port;
+fprintf('Choose the following Portfolio:\n');
+fprintf('\tSPT:\t%f\n', port(1));
+fprintf('\tGOVT:\t%f\n', port(2));
+fprintf('\tEEMV:\t%f\n', port(3));
+fprintf('The portfolio have profit %f\n', profit);
