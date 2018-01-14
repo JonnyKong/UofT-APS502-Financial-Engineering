@@ -1,5 +1,5 @@
 # UofT-APS502-Financial-Engineering
-This is the course project for the course "Financial Engineering" from University of Toronto.
+This is the course project for the course "Financial Engineering" from University of Toronto.  
 For more details regarding the project, refer to the assignment requirement PDF file.
 
 ## Part 1
